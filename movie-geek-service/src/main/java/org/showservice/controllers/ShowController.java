@@ -53,4 +53,16 @@ public class ShowController {
         this.showRepository.delete(showToDelete);
         return ResponseEntity.ok(showToDelete);
     }
+
+    @GetMapping("/toprated")
+    public List<Show> getToprated() {
+        return this.showRepository.find15BestRatedShows();
+    }
+
+
+
+
+
+
+
 }
