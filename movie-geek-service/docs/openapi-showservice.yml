@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: Show CRUD reqs
+  description: Java API - Spring BOOT - tests of api
+  version: 0.2.3
+  contact:
+    name: Show CRUD reqs
+
+servers:
+  - url: http://localhost:4000
+tags:
+  - name: shows
+paths:
+  /shows:
+    post:
+      tags:
+        - shows
+      operationId: createShow
+      summary: Create a show
+      description: Add a new show to our list of available shows
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShow'
+      responses:
+        '201':
+          description: Show created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+    get:
+      tags:
+        - shows
+      summary: Get all shows
+      description: Get all of the shows from our list
+      operationId: getShows
+      responses:
+        '200':
+          description: Get all shows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+  /shows/{id}:
+    get:
+      tags:
+        - shows
+      summary: Get a show
+      description: Get a show by ID
+      operationId: getSpecificShow
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the show to get
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Get a specific show from the list given its ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+    put:
+      tags:
+        - shows
+      summary: Update a show
+      description: Update an existing show by ID
+      operationId: updateShow
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the show to update
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShow'
+      responses:
+        '201':
+          description: Update the given show
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+    delete:
+      tags:
+        - shows
+      summary: Delete a show
+      description: Remove a show from our list of shows
+      operationId: deleteShow
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the show to delete
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Delete the given show
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+
+components:
+  schemas:
+    CreateShow:
+      type: object
+      properties:
+        title:
+          type: string
+        genre:
+          type: string
+        releaseDate:
+          type: string
+          format: date
+    Show:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        genre:
+          type: string
+        releaseDate:
+          type: string
