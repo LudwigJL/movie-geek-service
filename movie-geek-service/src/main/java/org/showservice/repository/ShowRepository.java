@@ -11,14 +11,18 @@ import java.util.List;
 public interface ShowRepository extends JpaRepository<Show, Integer> {
 
     //Change array size in the LIMIT after need.
-    @Query(value = "SELECT * FROM shows ORDER BY imdb_score DESC LIMIT 15", nativeQuery = true)
-    List<Show> find15BestRatedShows();
+    @Query(value = "SELECT * FROM shows ORDER BY imdb_score DESC LIMIT 200", nativeQuery = true)
+    List<Show> findBestRatedShows();
 
-    @Query(value = "SELECT * FROM shows ORDER BY imbd_score DESC LIMIT 50", nativeQuery = true)
-    List<Show> find50BestRatedShows();
+    @Query(value = "SELECT * FROM shows ORDER BY trend_score DESC LIMIT 200", nativeQuery = true)
+    List<Show> findMostTrending();
 
-    @Query(value = "SELECT * FROM shows WHERE genre = :genre", nativeQuery = true)
+    @Query(value = "SELECT * FROM shows WHERE LOWER(genre) = LOWER(:genre)", nativeQuery = true)
     List<Show> findShowsByGenre(@Param("genre") String genre);
+
+    @Query(value = "SELECT * FROM shows WHERE LOWER(genre) = LOWER(:genre) ORDER BY trend_score DESC LIMIT 200", nativeQuery = true)
+    List<Show> findTrendingShowsByGenre(@Param("genre") String genre);
+
 
 }
 

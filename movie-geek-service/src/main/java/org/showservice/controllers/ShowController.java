@@ -54,15 +54,32 @@ public class ShowController {
         return ResponseEntity.ok(showToDelete);
     }
 
+    //Custom GET endpoints
     @GetMapping("/toprated")
-    public List<Show> getToprated() {
-        return this.showRepository.find15BestRatedShows();
+    public List<Show> findTopRated() {
+        return this.showRepository.findBestRatedShows();
     }
 
+    @GetMapping("/trending")
+    public List<Show> findMostTrending(){
+        return this.showRepository.findMostTrending();
+    }
 
+    @GetMapping("/genre/{genre}")
+    public ResponseEntity<List<Show>> findShowsByGenre(@PathVariable String genre){
+        List<Show> shows = this.showRepository.findShowsByGenre(genre);
+        if (shows.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(shows, HttpStatus.OK);
+    }
 
-
-
-
-
+    @GetMapping("/genre/{genre}/trending")
+    public ResponseEntity<List<Show>> findTrendingShowsByGenre(@PathVariable String genre){
+        List<Show> shows = this.showRepository.findTrendingShowsByGenre(genre);
+        if (shows.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(shows, HttpStatus.OK);
+    }
 }

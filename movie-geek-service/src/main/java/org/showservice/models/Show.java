@@ -26,6 +26,9 @@ public class Show {
     @Column(name = "imdb_score")
     private int imdbScore;
 
+    @Column(name = "trend_score")
+    private int trendScore;
+
     @Column(name = "genre")
     private String genre;
 
@@ -36,12 +39,13 @@ public class Show {
         this.id = id;
     }
 
-    public Show(String title, String runtime, int seasons, int releaseYear, int imdbScore, String genre) {
+    public Show(String title, String runtime, int seasons, int releaseYear, int imdbScore, int trendScore, String genre) {
         this.title = title;
         this.runtime = runtime;
         this.seasons = seasons;
         this.releaseYear = releaseYear;
         this.imdbScore = imdbScore;
+        this.trendScore = trendScore;
         this.genre = genre;
     }
 
@@ -92,4 +96,22 @@ public class Show {
     public void setImdbScore(int imdbScore) {
         this.imdbScore = imdbScore;
     }
+
+    public int getTrendScore() {
+        return trendScore;
+    }
+
+    public void setTrendScore(int trendScore) {
+        this.trendScore = trendScore;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
 }
+
+
