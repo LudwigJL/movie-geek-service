@@ -42,6 +42,8 @@ public class ShowController {
         showToUpdate.setSeasons(show.getSeasons());
         showToUpdate.setReleaseYear(show.getReleaseYear());
         showToUpdate.setImdbScore(show.getImdbScore());
+        showToUpdate.setGenre(show.getGenre());
+        showToUpdate.setColorTheme(show.getColorTheme());
 
         return new ResponseEntity<Show>(this.showRepository.save(showToUpdate), HttpStatus.CREATED);
     }

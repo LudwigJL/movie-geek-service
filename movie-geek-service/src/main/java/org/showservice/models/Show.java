@@ -32,6 +32,9 @@ public class Show {
     @Column(name = "genre")
     private String genre;
 
+    @Column(name = "color_theme")
+    private String colorTheme;
+
     public Show() {
     }
 
@@ -39,7 +42,7 @@ public class Show {
         this.id = id;
     }
 
-    public Show(String title, String runtime, int seasons, int releaseYear, int imdbScore, int trendScore, String genre) {
+    public Show(String title, String runtime, int seasons, int releaseYear, int imdbScore, int trendScore, String genre, String colorTheme) {
         this.title = title;
         this.runtime = runtime;
         this.seasons = seasons;
@@ -47,6 +50,7 @@ public class Show {
         this.imdbScore = imdbScore;
         this.trendScore = trendScore;
         this.genre = genre;
+        this.colorTheme = colorTheme;
     }
 
     public int getId() {
@@ -111,6 +115,14 @@ public class Show {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getColorTheme() {
+        return colorTheme;
+    }
+
+    public void setColorTheme(String colorTheme) {
+        this.colorTheme = colorTheme;
     }
 }
 
